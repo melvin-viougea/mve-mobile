@@ -28,7 +28,7 @@ class _TabsPageState extends State<TabsPage> {
       ),
       bottomNavigationBar: CustomNavigationBar(
         iconSize: 30.0,
-        selectedColor: Colors.deepPurpleAccent,
+        selectedColor: const Color(0xFF6735D0),
         strokeColor: const Color(0x30040307),
         unSelectedColor: const Color(0xffacacac),
         backgroundColor: Colors.white,

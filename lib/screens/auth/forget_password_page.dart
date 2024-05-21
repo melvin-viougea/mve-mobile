@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/colors.dart';
-import '../../widgets/welcome/textfield_widget.dart';
+import '../../widgets/auth/textfield_widget.dart';
 import '../tabs/tabs_screen.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -19,14 +19,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        foregroundColor: Colors.deepPurple[900],
+        foregroundColor: const Color(0xFF6735D0),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: Colors.deepPurple[900],
+            color: Color(0xFF6735D0),
           ),
         ),
       ),
@@ -36,17 +36,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Text(
-              'Forgot Password',
+            const Text(
+              'Mot de passe oublié',
               style: TextStyle(
-                color: Colors.deepPurple[900],
+                color: Color(0xFF6735D0),
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
               ),
             ),
             const SizedBox(height: 20),
             const Text(
-              'Please enter your email address. You will receive a link to create a new password via email.',
+              'Veuillez entrer votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
@@ -67,8 +67,12 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  textStyle: const TextStyle(fontSize: 17),
+                  backgroundColor: const Color(0xFF6735D0),
+                  textStyle: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  foregroundColor: Colors.white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                   ),
@@ -81,7 +85,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     ),
                   );
                 },
-                child: const Text('Send'),
+                child: const Text('Envoyé'),
               ),
             ),
           ],

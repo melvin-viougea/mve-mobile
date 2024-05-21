@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/stories_model.dart';
+import '../../../data/stories_model.dart';
 import '../../../widgets/feed/add_story_widget.dart';
 import '../../../widgets/feed/story_widget.dart';
 

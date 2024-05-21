@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mve_mobile/screens/tabs/tabs_screen.dart';
-import 'package:mve_mobile/screens/welcome/sign_in_page.dart';
+import 'package:mve_mobile/screens/auth/sign_in_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {

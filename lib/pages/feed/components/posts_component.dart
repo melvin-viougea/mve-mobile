@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/posts_model.dart';
+import '../../../data/posts_model.dart';
 import '../../../widgets/feed/post_widget.dart';
 
 class PostsComponent extends StatelessWidget {

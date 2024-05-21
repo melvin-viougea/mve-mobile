@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../models/videos_model.dart';
+import '../../data/videos_model.dart';
 import '../../widgets/appbar/app_bar_widget.dart';
 import '../../widgets/videos/video_widget.dart';
 

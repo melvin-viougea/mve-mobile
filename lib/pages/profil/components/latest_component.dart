@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/latest_photos_model.dart';
+import '../../../data/latest_photos_model.dart';
 import '../../../theme/styles.dart';
 import '../../../widgets/profil/photo_card_widget.dart';
 

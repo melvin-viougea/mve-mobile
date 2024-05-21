@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:story_view/story_view.dart';
-import '../../models/story_model.dart';
+import '../../data/story_model.dart';
 
 class StoryScreen extends StatelessWidget {
   const StoryScreen({Key? key}) : super(key: key);

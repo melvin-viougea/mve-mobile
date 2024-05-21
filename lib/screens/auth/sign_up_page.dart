@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/colors.dart';
-import '../../widgets/welcome/textfield_widget.dart';
+import '../../widgets/auth/textfield_widget.dart';
 import '../tabs/tabs_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -20,14 +20,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        foregroundColor: Colors.deepPurple[900],
+        foregroundColor: const Color(0xFF6735D0),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: Colors.deepPurple[900],
+            color: Color(0xFF6735D0),
           ),
         ),
       ),
@@ -38,39 +38,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              Text(
-                'Create an account',
+              const Text(
+                'Création de compte',
                 style: TextStyle(
-                  color: Colors.deepPurple[900],
+                  color: Color(0xFF6735D0),
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
                 ),
               ),
               const SizedBox(height: 50),
               TextFieldWidget(
-                  fieldName: 'Username',
+                  fieldName: 'Prénom',
                   fieldController: emailField,
-                  fieldType: TextInputType.text),
+                  fieldType: TextInputType.text,
+                  obscureText: false,
+              ),
               const SizedBox(height: 10),
               TextFieldWidget(
                   fieldName: 'Email',
                   fieldController: emailField,
-                  fieldType: TextInputType.emailAddress),
+                  fieldType: TextInputType.emailAddress,
+                  obscureText: false,
+              ),
               const SizedBox(height: 10),
               TextFieldWidget(
-                  fieldName: 'Phone',
+                  fieldName: 'Téléphone',
                   fieldController: emailField,
-                  fieldType: TextInputType.number),
+                  fieldType: TextInputType.number,
+                  obscureText: false,
+              ),
               const SizedBox(height: 10),
               TextFieldWidget(
-                  fieldName: 'Date of birth',
-                  fieldController: emailField,
-                  fieldType: TextInputType.text),
-              const SizedBox(height: 10),
-              TextFieldWidget(
-                  fieldName: 'Password',
+                  fieldName: 'Mot de passe',
                   fieldController: passwordField,
-                  fieldType: TextInputType.visiblePassword),
+                  fieldType: TextInputType.visiblePassword,
+                  obscureText: true,
+              ),
               const SizedBox(height: 40),
               ConstrainedBox(
                 constraints: const BoxConstraints.tightFor(
@@ -79,8 +82,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    textStyle: const TextStyle(fontSize: 17),
+                    backgroundColor: const Color(0xFF6735D0),
+                    textStyle: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    foregroundColor: Colors.white,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25)),
                     ),
@@ -93,12 +100,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     );
                   },
-                  child: const Text('Sign Up'),
+                  child: const Text('Inscription'),
                 ),
               ),
               const SizedBox(height: 40),
               const Text(
-                'By clicking Sign Up, you agree to the following Terms and Conditions without reservation',
+                'En cliquant sur S\'inscrire, vous acceptez les conditions générales suivantes sans réserve',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.black,

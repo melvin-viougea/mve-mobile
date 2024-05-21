@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mve_mobile/screens/welcome/sign_up_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mve_mobile/screens/auth/sign_up_page.dart';
+import '../../interface/login_interface.dart';
+import '../../models/user_model.dart';
+import '../../services/login_service.dart';
 import '../../theme/colors.dart';
-import '../../widgets/welcome/textfield_widget.dart';
+import '../../widgets/auth/textfield_widget.dart';
 import '../tabs/tabs_screen.dart';
 import 'forget_password_page.dart';
 
@@ -14,6 +18,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final emailField = TextEditingController();
   final passwordField = TextEditingController();
+  final ILogin loginService = LoginService();
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +29,32 @@ class _SignInScreenState extends State<SignInScreen> {
         backgroundColor: Colors.white.withOpacity(0),
         elevation: 0,
       ),
-      body: Stack(
-        alignment: Alignment.bottomCenter,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/image/photo/photo-11.jpeg"),
-                fit: BoxFit.cover,
+            padding: const EdgeInsets.all(30),
+            height: 250,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(255, 255, 255, 0.1),
+              borderRadius: BorderRadius.circular(70),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 5,
+                    blurRadius: 15,
+                    offset: const Offset(0, 3),
+                  )
+                ],
+              ),
+              padding: const EdgeInsets.all(20),
+              child: SvgPicture.asset(
+                'assets/icon/logo.svg',
               ),
             ),
           ),
@@ -48,17 +71,17 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 10),
-                  Text(
-                    'Welcome back',
+                  const Text(
+                    'Bon retour !',
                     style: TextStyle(
-                      color: Colors.deepPurple[900],
+                      color: Color(0xFF6735D0),
                       fontWeight: FontWeight.bold,
                       fontSize: 32,
                     ),
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    'Login to your account',
+                    'Connexion a votre compte',
                     style: TextStyle(
                       color: Colors.black45,
                       fontSize: 17,
@@ -70,12 +93,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     fieldName: 'Adresse email',
                     fieldType: TextInputType.emailAddress,
                     fieldController: emailField,
+                    obscureText: false,
                   ),
                   const SizedBox(height: 10),
                   TextFieldWidget(
                     fieldName: 'Mot de passe',
                     fieldType: TextInputType.visiblePassword,
                     fieldController: passwordField,
+                    obscureText: true,
                   ),
                   const SizedBox(height: 25),
                   ConstrainedBox(
@@ -85,21 +110,40 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
-                        textStyle: const TextStyle(fontSize: 17),
+                        backgroundColor: const Color(0xFF6735D0),
+                        textStyle: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        foregroundColor: Colors.white,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(25)),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TabsPage(),
-                          ),
-                        );
+                      onPressed: () async {
+                        if (emailField.text.isNotEmpty &&
+                            passwordField.text.isNotEmpty) {
+                          UserModel? user = await loginService.login(
+                              emailField.text,
+                              passwordField.text);
+                          if (user != null) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => TabsPage(), //TabsPage(user: // user),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                duration: Duration(seconds: 3),
+                                content: Text('email or password incorrect'),
+                              ),
+                            );
+                            return null;
+                          }
+                        }
                       },
-                      child: const Text('Login'),
+                      child: const Text('Connexion'),
                     ),
                   ),
                   // const SizedBox(height: 10),
@@ -148,7 +192,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
                       },
                       child: const Text(
-                        'Forgot your password ?',
+                        'Mot de passe oublié ?',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 17.0,
@@ -173,7 +217,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Dont\'t have a account ?',
+                              'Pas de compte ?',
                               style: TextStyle(
                                 color: Colors.black38,
                                 fontSize: 17.0,
@@ -182,9 +226,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             SizedBox(width: 10),
                             Text(
-                              'Sign up',
+                              'Inscription',
                               style: TextStyle(
-                                color: Colors.orange,
+                                color: Color(0xFF6735D0),
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.w600,
                               ),
